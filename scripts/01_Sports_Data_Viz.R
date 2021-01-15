@@ -130,3 +130,91 @@ s <- p + geom_bar(position = "identity") #overlaps
 t <- p + geom_bar(position = "fill") #uses proportion
 
 grid.arrange(q,r,s,t, ncol=2, nrow = 2)
+
+#jittering
+p <- ggplot(df, aes(TRB, BLK))
+p + geom_point()
+p + geom_point() + geom_jitter() #moves each point by a tiny random amount
+
+#coordinates
+ggplot(df) +
+  geom_bar(mapping = aes(x = Pos, fill = Pos)) +
+  coord_polar()
+
+#radar chart
+ggplot(df) +
+  geom_bar(mapping = aes(x = Pos, fill = Pos), width = 1) +
+  coord_polar(theta = "y")
+
+#histogram
+ggplot(df) +
+  geom_histogram(aes(BLK), binwidth = 0.1)
+
+#zoom in on the histogram between 0 and 1 blocks and a count of 5 to 15 players
+ggplot(df) +
+  geom_histogram(aes(BLK), binwidth = 0.2) +
+  coord_cartesian(xlim = c(0,1), ylim = c(5,15))
+
+#density
+ggplot(df, aes(x = BLK, color = Pos)) +
+  geom_density()
+
+#labels
+p1 <- ggplot(df, aes(x = BLK, color = Pos)) +
+  geom_density()
+
+p1 + labs(title="Centers block more shots than other positions")
+
+p1 + labs(title = "Centers block more shots than other positions",
+          subtitle = "Point Guards block the least",
+          caption = "Data: NBA Players 2019-20 Season")
+
+p1 + labs(x = "Blocked Shots Per Game", y = "Density", color = "Position")
+
+#themes
+p1 + theme_bw()
+p1 + theme_gray()
+p1 + theme_dark()
+p1 + theme_light()
+
+#fancy themes
+# install.packages("ggthemes") #if its not installed already
+library(ggthemes)
+p1 + theme_tufte()
+p1 + theme_fivethirtyeight()
+p1 + theme_economist()
+
+names(df)
+#scales
+
+p2 <- ggplot(df, aes(AST,STL)) +
+  geom_point(aes(color = STL))
+p2 + scale_x_log10() + scale_y_log10() #take the log of your data
+p2 + scale_color_distiller(palette = "Spectral") #use heat map colors
+
+#Use Color Brewer Colors
+library(RColorBrewer)
+p2 + scale_color_distiller(palette = "Blues"
+                           )
+p1 + scale_color_brewer(palette = "Set1")
+
+
+
+#we'll come back to this but i'm transforming the position into Guards, Wings and Bigs
+df <- df %>% 
+  mutate(New_Pos=if_else(Pos %in% c("PG","SG"),"Guards",if_else(Pos=="SF","Wings","Bigs"))) 
+
+#Pull it all together          
+
+ggplot(df, aes(x = BLK, y =  TRB)) +
+  geom_point() +
+  geom_smooth(aes(color = New_Pos), se = FALSE) +
+  labs(title = "Bigs have highest upside on rebounds and blocks",
+       subtitle = "Lines show estimate of mean values for each position",
+       caption = "Source: NBA 19-20 Player Data",
+       x = "Blocks",
+       y = "Rebounds",
+       color = "Position") +
+  scale_color_brewer(palette = "Set1") +
+  theme_tufte()
+
