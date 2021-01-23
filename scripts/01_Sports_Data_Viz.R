@@ -8,8 +8,18 @@ library(tidyverse)
 library(here)
 library(gridExtra)
 
+here()
 #Read the data
 df <- read_csv("data/nba_player_stats_1920.csv")
+
+#Look at your data
+View(df)
+dim(df) # see the dimensions of your data in rows and columns (11,358 rows, 6 columns)
+dim(full_df)  # see the dimensions of your data in rows and columns (207,058 rows, 6 columns)
+names(df) # see the names of your columns
+head(df) # see the first 5 rows of your data
+tail(df) # see the last 5 rows of your data
+str(df)
 # Basic plotting in R
 plot(df$TRB,df$BLK) 
 # View the NBA player data
@@ -20,7 +30,7 @@ ggplot(data = df) +
   geom_point(mapping = aes(x = TRB, y = BLK))
 
 #Aesthetics
-ggplot(df) + geom_point(aes(x = TRB, y = BLK, color = Pos)) 
+ggplot(df) + geom_point(aes(x = TRB, y = BLK, color = Pos))
 ggplot(df) + geom_point(aes(x = TRB, y = BLK, size = Pos))
 ggplot(df) + geom_point(aes(x = TRB, y = BLK, shape = Pos))
 ggplot(df) + geom_point(aes(x = TRB, y = BLK, alpha = Pos)) #transparency of the datapoint
@@ -205,8 +215,8 @@ df <- df %>%
   mutate(New_Pos=if_else(Pos %in% c("PG","SG"),"Guards",if_else(Pos=="SF","Wings","Bigs"))) 
 
 #Pull it all together          
-
-ggplot(df, aes(x = BLK, y =  TRB)) +
+library(ggthemes)
+z <- ggplot(df, aes(x = BLK, y =  TRB)) +
   geom_point() +
   geom_smooth(aes(color = New_Pos), se = FALSE) +
   labs(title = "Bigs have highest upside on rebounds and blocks",
@@ -216,5 +226,7 @@ ggplot(df, aes(x = BLK, y =  TRB)) +
        y = "Rebounds",
        color = "Position") +
   scale_color_brewer(palette = "Set1") +
-  theme_tufte()
+  theme_tufte() 
+z
 
+ggsave("images/NBA_Rebounds_and_Blocks.png", width = 6, height = 4)

@@ -10,7 +10,7 @@ dim(full_df)  # see the dimensions of your data in rows and columns (207,058 row
 names(df) # see the names of your columns
 head(df) # see the first 5 rows of your data
 tail(df) # see the last 5 rows of your data
-
+str(df)
 #########FILTER###########
 
 #pitchers that threw fastballs 100% of the time in a given outing
@@ -126,7 +126,7 @@ full_df %>%
 
 full_df %>% 
   filter(player_name=="Jacob deGrom",pitch_type == "FF") %>% 
-  summarise(min = min(release_speed), mean = mean(release_speed),
+  dplyr::summarise(min = min(release_speed), mean = mean(release_speed),
             max = max(release_speed))
 
 
