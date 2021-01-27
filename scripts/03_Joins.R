@@ -42,7 +42,8 @@ hamilton <- results %>%
   filter(surname == "Hamilton"&year>2006) %>% 
   rename(Qualify_Pos=positionOrder,Finish_Pos=grid)
 
-#Try to calcuate number of wins, number of races run by team, average difference between
+
+#Try to calculate number of wins, number of races run by team, average difference between
 #qualify position and finishing position
 #Is Hamilton better at qualifying 1st or winning the race?
 
