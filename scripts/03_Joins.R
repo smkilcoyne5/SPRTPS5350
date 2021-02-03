@@ -42,6 +42,32 @@ hamilton <- results %>%
   filter(surname == "Hamilton"&year>2006) %>% 
   rename(Qualify_Pos=positionOrder,Finish_Pos=grid)
 
+## Making the data for in-class example
+results %>% 
+  inner_join(drivers,by=c("driverId"="driverId")) %>% 
+  inner_join(races,by=c("raceId"="raceId")) %>% 
+  inner_join(construct,by=c("constructorId"="constructorId")) %>%
+  filter(year> 1995) %>% 
+  select(year,round,surname,constructorRef,grid,positionOrder) %>% 
+  filter(surname == "Hamilton") %>% 
+  mutate(pole=if_else(grid==1,"on_pole","not_on_pole"),
+         race=if_else(positionOrder==1,"won_race","did_not_win_race")) %>% 
+  select(constructorRef,pole,race) %>% 
+  group_by(pole) %>% count(race) %>% 
+  spread(race,n)
+
+results %>% 
+  inner_join(drivers,by=c("driverId"="driverId")) %>% 
+  inner_join(races,by=c("raceId"="raceId")) %>% 
+  inner_join(construct,by=c("constructorId"="constructorId")) %>%
+  filter(year> 1995) %>% 
+  select(year,round,surname,constructorRef,grid,positionOrder) %>% View()
+  filter(surname == "Hamilton") %>% 
+  mutate(pole=if_else(grid==1,"on_pole","not_on_pole"),
+         race=if_else(positionOrder==1,"won_race","did_not_win_race")) %>% 
+  select(constructorRef,pole,race) %>% 
+  group_by(pole) %>% count(race) %>% 
+  spread(race,n)
 
 #Try to calculate number of wins, number of races run by team, average difference between
 #qualify position and finishing position
