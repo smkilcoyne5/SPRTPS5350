@@ -17,3 +17,7 @@ Use R code to do covariance and correlation for question 4.  <br/>
 Try to do a correlation matrix grouping by player position on question 4. <br/>
 Week 4 <br/>
 Walk through Probability code <br/>
+Week 5 <br/>
+Walk through Tidy Data presentation
+Run through 05-Tidy-Data and 05-Norm-Dist code
+Try to do questions 1 & 4 in R <br/>
