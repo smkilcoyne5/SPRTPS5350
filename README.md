@@ -22,4 +22,4 @@ Walk through Probability code <br/>
 Week 5 <br/>
 Walk through Tidy Data presentation  <br/>
 Run through 05-Tidy-Data and 05-Norm-Dist code  <br/>
-Try to do questions 1 & 4 in R  <br/>
+Try to do questions 1 & 4 in R (using goals and power-play-goals datasets)  <br/>
