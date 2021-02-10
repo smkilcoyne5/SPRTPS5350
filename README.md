@@ -20,6 +20,6 @@ Week 4 <br/>
 Walk through Probability code <br/>
 <br/>
 Week 5 <br/>
-Walk through Tidy Data presentation
-Run through 05-Tidy-Data and 05-Norm-Dist code
-Try to do questions 1 & 4 in R <br/>
+Walk through Tidy Data presentation  <br/>
+Run through 05-Tidy-Data and 05-Norm-Dist code  <br/>
+Try to do questions 1 & 4 in R  <br/>
