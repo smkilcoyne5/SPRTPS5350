@@ -1,0 +1,119 @@
+library("tidyverse")
+
+#Ex_2 - 95% CI for A'ja Wilson & Satou Sabally
+
+conf = qnorm(.975)
+sdAja = sd(Ex_2$`A'ja Wilson`)
+sdSat = sd(Ex_2$`Satou Sabally`)
+level = pnorm(conf)-(1-pnorm(conf))
+
+Aja <- qnorm(.975)*(sdAja/sqrt(5))
+Sat <- qnorm(.975)*(sdSat/sqrt(5))
+
+mean(Ex_2$`A'ja Wilson`) - Aja #18.11
+mean(Ex_2$`A'ja Wilson`) + Aja #21.49
+
+mean(Ex_2$`Satou Sabally`) - Sat #8.34
+mean(Ex_2$`Satou Sabally`) + Sat #18.06
+
+#these intervals are wrong, what did I do wrong?
+
+#Ex_3 - 95% CI for Dodgers Attendance
+
+mean = mean(Ex_3$Attendance)
+sd = sd(Ex_3$Attendance)
+error = qnorm(.975)*(sd/sqrt(81))
+
+lower <- mean - error
+upper <- mean + error
+lower #48,143.24
+upper #49,987.84
+
+#again, these are slightly off from my excel work, what's the issue?
+
+#Ex_4
+
+mean4 = mean(Ex_4$Attendance)
+sd4 = sd(Ex_4$Attendance)
+error4 = qnorm(.975)*(sd4/sqrt(81))
+
+lower4 <- mean4 - error4
+upper4 <- mean4 + error4
+lower4 #9237.1
+upper4 #10795.1
+
+
+#Ex_5
+
+#sample SD
+sd5 = sd(Ex_5$Attendance)
+sd5
+
+#sample mean
+mean5 = mean(Ex_5$Attendance)
+mean5
+
+#sample size
+10
+
+#Conf Level
+conf=qnorm(.975)
+level = pnorm(conf)-(1-pnorm(conf))
+level
+
+#standard error
+error5 = sd5/sqrt(10)
+error5
+
+t.test(Ex_5$Attendance)
+#does the t.test just give you the interval that easily??
+
+t <- qt(.05/2, 9, lower.tail = FALSE)
+#2.26
+
+lower5 <- mean5 - error5*t
+upper5 <- mean5 + error5*t
+lower5 #43,167.28
+upper5 #50,258.12
+
+#doing this one step by step I found the interval correctly
+
+#Ex_6
+
+t.test(Ex_6$Attendance)
+# (6168.9, 14915.9)
+
+#can you use this t-test to find something other than the 95% CI, say 90% CI?
+
+#Going back and trying Ex_2 again...
+
+#Ex_2 - 95% CI for A'ja Wilson & Satou Sabally
+
+conf = qnorm(.975)
+sdAja = sd(Ex_2$`A'ja Wilson`)
+sdSat = sd(Ex_2$`Satou Sabally`)
+level = pnorm(conf)-(1-pnorm(conf))
+
+Aja <- qnorm(.975)*(sdAja/sqrt(5))
+Sat <- qnorm(.975)*(sdSat/sqrt(5))
+
+t1 <- qt(.05/2, 4, lower.tail = FALSE)
+
+meanAja = mean(Ex_2$`A'ja Wilson`)
+meanSat = mean(Ex_2$`Satou Sabally`)
+
+meanAja - Aja*t1 #15.11
+meanAja + Aja*t1 #24.48
+
+meanSat - Sat*t1 #-0.28
+meanSat + Sat*t1 #26.68
+
+#now these are horribly wrong?
+
+t.test(Ex_2$`A'ja Wilson`)
+# (17.41, 22.18)
+
+t.test(Ex_2$`Satou Sabally`)
+# (6.32, 20.08)
+
+#I'll visit office hours to walk through 7&8 and correct my mistakes with these
