@@ -1,0 +1,33 @@
+library(tidyverse)
+
+#Q1
+df1 <- read_csv("data/seager.csv")
+
+t.test(df1$MPH,mu=88.8)
+
+#Q2
+df2 <- read_csv("data/nba_bubble.csv")
+
+t.test(df2$Point_Diff,mu=11.51)
+
+#how come the p-values are slightly different than my excel calculations??
+
+#Q3
+t.test(df2$FTA,mu=46.96)
+
+#Q5
+df1
+
+ten_games <- df1$MPH %>% 
+  filter(n<=10) %>% 
+  dplyr::summarise(tp=sum(tp),tpa=sum(tpa))
+
+#need help with this one
+
+#Q7
+prop.test(.524,42, p = .374,
+          alternative = c("two.sided", "less", "greater"),
+          conf.level = 0.95, correct = TRUE)
+#p=.0124
+
+
