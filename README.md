@@ -29,3 +29,6 @@ Walk through Import Data presentation  <br/>
 Run through 08_Read_Data and 08_T_Test examples (do this before doing homework)  <br/>
 Do all homework questions if you can. The seager and nba_bubble and dodgers files are in the data section. <br/>
 The dodgers file is an xlsx file not csv so you'll need 'read_xlsx' instead of 'read_csv' function <br/>
+###### Week 9 <br/>
+Walk through Data Types and Iteration presentations  <br/>
+Try to do all the homeworks in R  <br/>
