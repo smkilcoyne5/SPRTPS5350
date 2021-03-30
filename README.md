@@ -1,4 +1,4 @@
-## SPRTPS5350 - Columbia University Foundations of Sports Analytics**
+## SPRTPS5350 - Columbia University Foundations of Sports Analytics
 
 ###### Week 1 <br/>
 Walk through Data Visualization Code. <br/>
@@ -31,4 +31,8 @@ Do all homework questions if you can. The seager and nba_bubble and dodgers file
 The dodgers file is an xlsx file not csv so you'll need 'read_xlsx' instead of 'read_csv' function <br/>
 ###### Week 9 <br/>
 Walk through Data Types and Iteration presentations  <br/>
+Try to do all the homeworks in R  <br/>
+###### Week 10 <br/>
+Walk through Models presentations  <br/>
+Run through 09_Broom example <br/>
 Try to do all the homeworks in R  <br/>
