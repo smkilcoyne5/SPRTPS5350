@@ -1,0 +1,80 @@
+library(modelr)
+library(tidyverse)
+library(corrplot)
+library(caret)
+
+MLB %>% 
+  ggplot(aes(Revenue, Value)) +
+  geom_point()
+
+m_MLB <- lm(Value ~ Revenue, data = MLB)
+m_MLB
+
+m_MLB %>% 
+  tidy()
+
+m_MLB %>% 
+  glance() %>% 
+  select(adj.r.squared,p.value)
+
+#b0 = -841.877, b1 = 7.788, r-squared = .958
+
+NBA %>% 
+  ggplot(aes(Revenue, Value)) +
+  geom_point()
+
+m_NBA <- lm(Value ~ Revenue, data = NBA)
+m_NBA
+
+m_NBA %>% 
+  tidy()
+
+m_NBA %>% 
+  glance() %>% 
+  select(adj.r.squared,p.value)
+
+#b0 = -1756, b1 = 15, r-squared = .89
+
+NHL %>% 
+  ggplot(aes(Revenue, Value)) +
+  geom_point()
+
+m_NHL <- lm(Value ~ Revenue, data = NHL)
+m_NHL
+
+m_NHL %>% 
+  tidy()
+
+m_NHL %>% 
+  glance() %>% 
+  select(adj.r.squared,p.value)
+
+#b0 = -625.889, b1 = 9.073, r-squared = .895
+
+NFL %>% 
+  ggplot(aes(Revenue, Value)) +
+  geom_point()
+
+m_NFL <- lm(Value ~ Revenue, data = NFL)
+m_NFL
+
+m_NFL %>% 
+  tidy()
+
+m_NFL %>% 
+  glance() %>% 
+  select(adj.r.squared,p.value)
+
+#bo = 61.71, b1 = 6.256, r-squared = .678
+
+NBA %>% data_grid(Revenue, Value, .model = m_NBA)
+
+NBA %>% 
+  data_grid(Revenue, Value, .model = m_NBA) %>% 
+  add_predictions(m_NBA) %>% 
+  ggplot(aes(x = Revenue)) +
+  geom_point(aes(y = Value), data = NBA) +
+  geom_line(aes(y = pred, color = Value)) +
+  coord_trans(y = "exp")
+
+#tried experimenting with this stuff from 07Models with the HW data - we can talk about this
